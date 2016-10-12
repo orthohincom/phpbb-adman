@@ -1,0 +1,8 @@
+services:
+    orthohin.adman.listener:
+        class: orthohin\adman\event\main_listener
+        arguments:
+            - '@controller.helper'
+            - '@template'
+        tags:
+            - { name: event.listener }

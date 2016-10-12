@@ -1,0 +1,101 @@
+<!-- INCLUDE overall_header.html -->
+
+<a id="maincontent"></a>
+
+<!-- IF S_EDIT_ADMAN -->
+
+	<a href="{U_BACK}" style="float: {S_CONTENT_FLOW_END};">&laquo; {L_BACK}</a>
+	<!-- IF S_ADD_ADMAN -->
+	<h1>{L_AD_ADD}</h1>
+
+	<p>{L_ACP_ADADD_EXPLAIN}</p>
+	<!-- ELSE -->
+	<h1>{L_AD_EDIT}</h1>
+
+	<p>{L_ACP_ADEDIT_EXPLAIN}</p>
+
+	<!-- ENDIF -->
+	<form id="acp_adcodes" method="post" action="{U_ACTION}">
+
+	<fieldset>
+		<legend>Advertisement code</legend>
+		<dl>
+			<dt><label for="event_name">{L_EVENT_NAME}</label><br>
+				<span>{L_EVENT_NAME_EXPLAIN}</span>
+			</dt>
+			<dd>
+				<input id="event_name" type="text" size="40" maxlength="60" name="event_name" value="{EVENT_NAME}" >
+			</dd>
+		</dl>
+		<dl>
+			<dt><label for="ad_code">HTML code:</label><br>
+				<span>Put the HTML code you want to insert into.</span>
+			</dt>
+			<dd>
+				<textarea id="ad_code" name="ad_code" rows="4">{AD_CODE}</textarea>
+			</dd>
+		</dl>
+	</fieldset>
+
+	<fieldset>
+		<legend>{L_ENABLED}</legend>
+	<dl>
+		<dt><label for="ad_enabled">Enable?</label></dt>
+		<dd><input type="checkbox" class="radio" name="ad_enabled" id="display_on_posting" value="1"<!-- IF AD_ENABLED --> checked="checked"<!-- ENDIF --> /></dd>
+	</dl>
+	</fieldset>
+
+	<fieldset class="submit-buttons">
+		<legend>{L_SUBMIT}</legend>
+		<input class="button1" type="submit" id="submit" name="submit" value="{L_SUBMIT}" />&nbsp;
+		<input class="button2" type="reset" id="reset" name="reset" value="{L_RESET}" />
+		{S_FORM_TOKEN}
+	</fieldset>
+	</form>
+
+<!-- ELSE -->
+
+	<h1>{L_ACP_ADMAN}</h1>
+
+	<p>{L_ACP_ADMAN_EXPLAIN}</p>
+	
+	<form id="acp_adman" method="post" action="{U_ACTION}">
+	<fieldset class="tabulated">
+	<legend>{L_ACP_ADMAN}</legend>
+
+	<table class="table1 zebra-table" id="down">
+	<thead>
+	<tr>
+		<th>ID</th>
+		<th>Event Name</th>
+		<th>Enabled</th>
+		<th>ACTION</th>
+	</tr>
+	</thead>
+	<tbody>
+	<!-- BEGIN adman -->
+		<tr>
+			<td width="10%">{adman.ADMAN_ID}</td>
+			<td style="text-align: center;">{adman.EVENT_NAME}</td>
+			<td width="10%"><!-- IF adman.AD_ENABLED -->Yes<!-- ELSE -->No<!-- ENDIF --></td>
+			<td class="actions"><!-- EVENT acp_adman_actions_prepend --> <a href="{adman.U_EDIT}">{ICON_EDIT}</a> <a href="{adman.U_DELETE}" data-ajax="row_delete">{ICON_DELETE}</a> <!-- EVENT acp_adman_actions_append --></td>
+		</tr>
+	<!-- BEGINELSE -->
+		<tr class="row3">
+			<td colspan="3">{L_ACP_NO_ITEMS}</td>
+		</tr>
+	<!-- END adman -->
+	</tbody>
+	</table>
+
+	<p class="quick">
+		<input class="button2" name="submit" type="submit" value="{L_ADD_ADMAN}" />
+	</p>
+	{S_FORM_TOKEN}
+	</fieldset>
+
+	</form>
+
+<!-- ENDIF -->
+
+<!-- INCLUDE overall_footer.html -->
