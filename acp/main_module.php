@@ -15,13 +15,13 @@ class main_module
 
 	function main($id, $mode)
 	{
-		global $db, $user, $template, $cache, $request, $table_prefix;
+		global $db, $user, $template, $cache, $request, $table_prefix, $phpbb_log;
 
 		$user->add_lang('acp/common');
 
 		// Set up general vars
-		$action	= request_var('action', '');
-		$adman_id = request_var('adman', 0);
+		$action	= $request->variable('action', '');
+		$adman_id = $request->variable('adman', 0);
 		$submit = $request->is_set_post('submit');
 
 		$this->tpl_name = 'adman_body';
@@ -80,10 +80,10 @@ class main_module
 			// No break here
 
 			case 'create':
-				$ad_enabled = request_var('ad_enabled', 0);
+				$ad_enabled = $request->variable('ad_enabled', 0);
 
-				$event_name = request_var('event_name', '');
-				$ad_code = htmlspecialchars_decode(utf8_normalize_nfc(request_var('ad_code', '', true)));
+				$event_name = $request->variable('event_name', '');
+				$ad_code = htmlspecialchars_decode(utf8_normalize_nfc($request->variable('ad_code', '', true)));
 			break;
 		}
 
@@ -241,7 +241,7 @@ class main_module
 					$log_action = 'LOG_ADMAN_EDIT';
 				}
 
-				add_log('admin', $log_action, $event_name);
+				$phpbb_log->add('admin', $log_action, $event_name);
 
 				trigger_error($user->lang[$lang] . adm_back_link($this->u_action));
 
@@ -262,7 +262,7 @@ class main_module
 					{
 						$db->sql_query('DELETE FROM ' . $adman_table . " WHERE adman_id = $adman_id");
 						$cache->destroy('sql', $adman_table);
-						add_log('admin', 'LOG_ADMAN_DELETE', $row['event_name']);
+						$phpbb_log('admin', 'LOG_ADMAN_DELETE', $row['event_name']);
 
 						if ($request->is_ajax())
 						{
