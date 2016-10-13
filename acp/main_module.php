@@ -76,7 +76,6 @@ class main_module
 				}
 
 
-
 			// No break here
 
 			case 'create':
@@ -241,7 +240,7 @@ class main_module
 					$log_action = 'LOG_ADMAN_EDIT';
 				}
 
-				$phpbb_log->add('admin', $log_action, $event_name);
+				add_log('admin', $log_action, $event_name);
 
 				trigger_error($user->lang[$lang] . adm_back_link($this->u_action));
 
@@ -262,7 +261,7 @@ class main_module
 					{
 						$db->sql_query('DELETE FROM ' . $adman_table . " WHERE adman_id = $adman_id");
 						$cache->destroy('sql', $adman_table);
-						$phpbb_log('admin', 'LOG_ADMAN_DELETE', $row['event_name']);
+						add_log('admin', 'LOG_ADMAN_DELETE', $row['event_name']);
 
 						if ($request->is_ajax())
 						{
