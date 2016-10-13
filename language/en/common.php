@@ -33,6 +33,9 @@ $lang = array_merge($lang, array(
 
 	'ACP_ADMAN_EXPLAIN'		=> 'Here you can mage Advertisement codes or tracking codes to be inserted in your template events.',
 	'ADD_ADMAN'				=> 'Add a new Advertisement',
+	'LOG_ADMAN_EDIT'		=>	'Advertisement Edited',
+	'LOG_ADMAN_ADD'		=>	'New Advertisement Added',
+	'LOG_ADMAN_DELETE'		=>	'Advertisement Deleted',
 
 	'ADMAN_ADDED'				=> 'Added successfully.',
 	'ADMAN_EDITED'				=> 'Edited successfully.',
