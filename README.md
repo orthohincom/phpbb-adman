@@ -13,7 +13,7 @@ You can see a list of events here: https://wiki.phpbb.com/Event_List#Template_Ev
 or use this ext https://www.phpbb.com/community/viewtopic.php?f=456&t=2283446#p14056576
 ### _Important_
 you need to create an HTML file manually here:
-/ext/orthohin/adman/styles/prosilver/template/event/
+`/ext/orthohin/adman/styles/prosilver/template/event/`
 The file name should the `EVENT_NAME.html`
 and the file  should contain the following line in it:
 
